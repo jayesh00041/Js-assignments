@@ -1,0 +1,76 @@
+<!-- Logo
+Assignment
+JS Lexical Environment, Execution Context and Call Stack, Javascript in browsers ... - In Class - Shopping Cart
+by Jayesh Sharma
+Save
+Run Test Cases
+Shopping Cart
+Instead of creating a static shopping list with paper and a pen, create it dynamically. Take the list item and the price from the user and further find the grand total.
+Details:
+
+Two input fields should be displayed that take name and price as input.
+
+A button with innerText Add should be rendered.
+
+When the add button is clicked, list should be updated and rendered through a table.
+
+data-ns-test="item-name" and data-ns-test="item-price" should be used to label name and price in table
+
+item-name-input and item-price-input should be used as id for name and price input fields.
+
+Total price of all element in the list should be displayed in an element with data-ns-test="grandTotal". This element should only have the value of the total and no other string.
+
+Input fields should be cleared once element has been added to the list
+
+Initially, table should have only one row with grandTotal as 0.
+
+Invalid input should not be accepted. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Grocery List</h1>
+    <!--input fields -->
+    <form method="post">
+        <input type="text" id="item-name-input" name="item" required>
+        <input type="number" id="item-price-input" name="price" required>
+        <button id="btn" onclick="insertItem()">Add</button>
+    </form>
+    <table>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Title</th>
+                <th>Price</th>
+            </tr>
+    </table> 
+</body>
+<script>
+    let sno=1,total=0;
+    let tfoot = document.createElement('tfoot');
+    tfoot.innerHTML="<tr><td></td><td></td><td data-ns-test='grandTotal'>"+total+"</td></tr>";
+    document.getElementsByTagName('table')[0].appendChild(tfoot);
+    function insertItem() {
+        let item = document.getElementById('item-name-input').value;
+        let price = document.getElementById('item-price-input').value;
+        if(price!=NaN && item!=''){
+            let tr = document.createElement('tr');
+            tr.innerHTML="<td>"+(sno++)+"</td><td data-ns-test='item-name'>"+item+"</td><td data-ns-test='item-price'>"+price+"</td>"
+            document.getElementsByTagName('tbody')[0].appendChild(tr);
+            //Total Calculation
+            let total=0;
+            let prices = document.querySelectorAll('td[data-ns-test="item-price"]');
+            prices.forEach(element => {
+                total+=parseInt(element.innerHTML);   
+            });
+            let grandTotal=document.querySelector('td[data-ns-test="grandTotal"]').innerHTML = total;
+        }
+    }
+    addEventListener('')
+</script>
+</html>

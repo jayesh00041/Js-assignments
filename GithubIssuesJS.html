@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issues JS</title>
+</head>
+<body>
+    <div class="page">
+        <h3>Page number <span id="page-number"></span></h3>
+        <ol id="list">
+
+        </ol>
+        <button id="load_next" onclick="nextpage()">Next</button>
+        <button id="load_prev" onclick="prevpage()">Previous</button>
+    </div>
+</body>
+<script>
+    var page=1;
+    fetch_data(page);
+        var emp;
+        
+
+        async function fetch_data(pageNumberHere){
+            
+            await fetch(`https://api.github.com/repositories/1296269/issues?page=${pageNumberHere}&per_page=5`)
+                .then(res=>res.json())
+                .then(page_data=>{
+                    document.getElementById('page-number').innerHTML= pageNumberHere;
+                    console.log(page_data);
+                    let ol='';
+                    page_data.forEach(element => {
+                        ol+=`<li>${element.url}</li>`    
+                    });
+                    document.getElementById('list').innerHTML=ol;
+                });
+        }
+        function nextpage(){
+            fetch_data(++page);
+        }
+        function prevpage(){
+            if(page!=1)
+                fetch_data(--page);
+        }
+    // console.log(pageData,"after fetch");
+</script>
+</html>

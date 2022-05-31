@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geeks For Geek</title>
+    <style>
+        .logo-text{
+            color: green;
+            font-size: xxx-large;
+        }
+        .logo > p{
+            font-size: 1.25em;
+            margin-top: -2em;
+        }
+        .navigation{
+            background-color: green;
+            display: flex;
+            
+        }
+        .left{
+            width: 75%;
+        }
+        .right{
+            width:  25%;
+            text-align: right;
+        }
+        .left a,.right a{
+            color: white;
+            text-decoration: none;
+        }
+        
+        .left div, .right div{
+            display: inline-block;
+            margin: 10px;
+        }
+        .main-section{
+            height: 350px;
+        }
+        .footer{
+            background-color: black;
+            color: white;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2 class="logo-text">GeeksForGeeks</h2>
+            <p>A computer science portal for geeks</p>
+        </div>
+        <nav>
+            <div class="navigation">
+                <div class="left">
+                    <div><a href="#">HOME</a></div>
+                    <div><a href="#">NEWS</a></div>
+                    <div><a href="#">NOTIFICATIONS</a></div>
+                </div>
+                <div class="right">
+                    <div><a href="#">LOGIN</a></div>  
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="main-section">
+            <div><h3>Content section</h3></div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer"><div>Footer Section</div></div>
+    </footer>
+</body>
+</html>

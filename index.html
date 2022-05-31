@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Page for mock</title>
+    <style>
+        .container{
+            width: 80%;
+            margin: auto;
+            font-family: cursive;
+        }
+        .navigationbar{
+            background-color: darkslateblue;
+            height: 30px;
+        }
+        .navigation{
+            display: inline;
+            width:100%;
+            color: white;
+            margin: auto;
+        }
+        .list-item{
+            background-color: rgb(97, 83, 185);
+            width: 30%;
+            text-align: center;
+            height: 30px;
+            color: white;
+            float: left;
+        }
+        .list-item:hover{
+            background-color: white;
+            color: rgb(97, 83, 185);
+        }
+        .input-text{
+            width: 60%;
+            height: 30px;
+            border-bottom: 1px solid #111
+            ;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="navigationbar">
+                <ul class="navigation">
+                    <a href=""><li class="list-item">Speaker</li></a>
+                    <a href=""><li class="list-item">Vanue</li></a>
+                    <a href=""><li class="list-item">Schdule</li></a>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div class="main">
+                <form action="#">
+                    <input id="name" type="text" placeholder="Name here" name="name" class="input-text">
+                    <input  type="tel" id="phone" name="phone" class="input-text" required placeholder="Mobile number here" >
+                    <input type="email" id="email" name="email" class="input-text" placeholder="Email here" >
+                    <input type="date" id="DOB" name="DOB" class="input-text" placeholder="Date of Event">
+                    <select name="venue" class="input-select">
+                        <option value="jodhpur">Jodhpur</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="Hydrabad">Hydrabad</option>
+                    </select>
+                    <textarea name="detaial">Event details here</textarea>
+                    <button type="submit" class="button-submit">Request Call Back</button>
+                </form>
+
+            </div>
+        </main>
+        <footer>
+            <div class="foot">
+                copywrite EventPlaners 2022
+            </div>
+            
+        </footer>
+    </div>
+</body>
+</html>

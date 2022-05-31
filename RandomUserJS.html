@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        
+        fetch_data();
+        var emp;
+        async function fetch_data(){
+            
+            await fetch('https://randomuser.me/api/')
+                .then(res=>res.json())
+                .then(user=>{
+                    document.getElementById('name').innerHTML=user.results[0].name.first+' '+user.results[0].name.last;
+                    document.getElementById('picture').src=user.results[0].picture.large;
+                    emp=user
+                });
+                document.getElementById('display-content').innerHTML='';
+        }
+        
+        function displayButton(attribute){
+            var div= document.getElementById('display-content');
+            if(attribute.dataset.attr=='email'){
+                div.innerHTML=emp.results[0].email;
+            }else if(attribute.dataset.attr=='phone'){
+                div.innerHTML=emp.results[0].phone;
+            }else if(attribute.dataset.attr=='age'){
+                div.innerHTML=emp.results[0].dob.age;
+            }
+
+        }
+        //console.log("outside async functionm");
+
+        
+        
+        
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User JS</title>
+</head>
+<body>
+    <div class="header">
+        <h2 id="name"></h2>
+        <img src="" id="picture" style="height: 200px; width: auto;">
+    </div>
+    <div class="content">
+        <button onclick="displayButton(this)" data-attr="age">Age</button>
+        <button onclick="displayButton(this)" data-attr="email">Email</button>
+        <button onclick="displayButton(this)" data-attr="phone">Phone</button>
+        <div id="display-content"></div>
+    </div>
+    <button id="getUser" onclick="fetch_data()">Get new User</button>
+</body>
+
+</html>
