@@ -19,15 +19,15 @@
 <script>
     var page=1;
     fetch_data(page);
-        var emp;
+    
         
 
-        async function fetch_data(pageNumberHere){
+        async function fetch_data(pageNumber){
             
-            await fetch(`https://api.github.com/repositories/1296269/issues?page=${pageNumberHere}&per_page=5`)
+            await fetch(`https://api.github.com/repositories/1296269/issues?page=${pageNumber}&per_page=5`)
                 .then(res=>res.json())
                 .then(page_data=>{
-                    document.getElementById('page-number').innerHTML= pageNumberHere;
+                    document.getElementById('page-number').innerHTML= pageNumber;
                     console.log(page_data);
                     let ol='';
                     page_data.forEach(element => {
@@ -36,9 +36,11 @@
                     document.getElementById('list').innerHTML=ol;
                 });
         }
+
         function nextpage(){
             fetch_data(++page);
         }
+
         function prevpage(){
             if(page!=1)
                 fetch_data(--page);
