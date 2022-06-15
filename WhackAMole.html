@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        width: 80%;
+        margin: auto;
+    }
+    .grid{
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8%;
+    }
+    .square{
+        overflow: hidden;
+        height: 150px;
+        background-color: aquamarine;
+    }
+    button{
+        border: none;
+        background-color: transparent;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Whack a mole</h1>
+            <h3 id="score"></h3>
+            <h3 id="time-left"></h3>
+            <button id="start"><img src="https://cdn3.iconfinder.com/data/icons/iconic-1/32/play_alt-512.png" height="25px"></button>
+            <button id="reset"><img src="https://www.freeiconspng.com/thumbs/restart-icon/black-panel-restart-system-icon--6.png" height="25px"></button>
+        </div>
+        <div class="grid">
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+            <div class="square" onclick="scoreCalc(this)"></div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let last_id = 1;
+    let firstTime = true;
+    var interval;
+    let image = 'https://i.pinimg.com/originals/1c/fd/2a/1cfd2a91ca459707bdc28dc75197f1b0.gif';
+    let time = 30, score=0;
+    displayTime(time);
+    displayScore();
+    document.getElementById('start').addEventListener('click', moveMole)
+
+    const divs = document.querySelectorAll('.square');
+    divs[last_id].style.backgroundImage = `url(${image})`;
+    function moveMole(){
+        
+        interval = setInterval(()=>{
+            
+            let id = parseInt(Math.random()*9);
+            console.log(id);
+            let divs = document.getElementsByClassName('square');
+            
+            divs[last_id].style.backgroundImage = `none`;
+            divs[last_id].classList.remove('mole');
+            divs[id].style.backgroundImage = `url(${image})`;
+            divs[id].classList.add('mole');
+            last_id=id;
+            time--;
+            if(time>=0){
+                displayTime(time);
+            }else{
+                reset();
+            }
+        }, 1000);
+        document.getElementById('start').setAttribute("disabled", "");
+    }
+
+    function displayTime(time){
+        let time_left = document.getElementById('time-left');
+        time_left.innerText = time;
+    }
+    
+    document.getElementById('reset').addEventListener('click',reset)
+    function reset(){
+        clearInterval(interval);
+        document.querySelector('.mole').onclick = '';
+        document.getElementById('start').removeAttribute("disabled", "");
+        time=30;
+        score = 0;
+        displayScore();
+        displayTime(time);
+    }
+    function scoreCalc(div){
+        if(div.style.backgroundImage=='url("https://i.pinimg.com/originals/1c/fd/2a/1cfd2a91ca459707bdc28dc75197f1b0.gif")'){
+            score++;
+            console.log(div);
+        }
+        console.log(div);
+        displayScore();
+    }
+    function displayScore(){
+        document.getElementById('score').innerText = score;
+    }
+    const obj = {
+        name:"abs",
+        age:24
+    }
+    obj.keys
+</script>

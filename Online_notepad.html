@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Notepad</title>
+</head>
+<style>
+    .container {
+        width: 80%;
+        margin: auto;
+    }
+    .header {
+        background-color: cadetblue;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }   
+    .header span{
+        font-size: 1.25em;
+        color:  white;
+        font-weight: 900;
+    }
+    textarea#textarea {
+        width: 99%;
+        height: 400px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="header">
+            <div><span id="heading">Online Notepad</span></div>
+            <div>
+                <label for="feature-flag"><span>Save My Note</span></label>
+                <input type="checkbox" onclick="saveData(this)" id="feature-flag">
+            </div>
+        </div>
+        <div class="textarea">
+            <textarea id="textarea" placeholder='Write your notes here'></textarea>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let interval;
+    function saveData(checkbox){
+        if(checkbox.checked === true){
+            interval = setInterval(()=>{
+                localStorage.setItem('autosave-data', document.getElementById('textarea').value);
+            }, 1000)
+        }else{
+            clearInterval(interval);
+        }
+
+    }
+    document.getElementById('textarea').value = localStorage.getItem('autosave-data');
+</script>

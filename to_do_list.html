@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
 
     <title>TO Do List</title>
 </head>
@@ -26,13 +25,29 @@
     </div>
 
     <script>
-        document.getElementById("add").addEventListener("click", function(event){
-            event.preventDefault()
-        });
-        function addData(){
+        document.querySelector(".todo-button").addEventListener("click", function(event){
+            event.preventDefault();
             let li = document.createElement('li');
+            li.innerHTML = `<span class="todo-item">${document.getElementsByClassName('todo-input')[0].value}</span><br>
+                            <button class="complete-btn" onclick="completed(this.parentElement)">Completed</button>
+                            <button class="trash-btn" onclick="trash(this.parentElement)">Delete</button>`;
+            document.getElementsByClassName('todo-list')[0].appendChild(li);
+        });
+        
+        // Strike through button functionality
+        function completed(parentli){
+            console.dir(parentli);
             
-            li.innerHTML = `<p></p>`
+            if(parentli.firstChild.style.textDecoration === "line-through solid rgb(0, 0, 0)"){
+                parentli.firstChild.style.textDecoration='none';
+            }else{
+                parentli.firstChild.style.textDecoration = "line-through solid rgb(0, 0, 0)";
+            }
+        }
+
+        //delete the element
+        function trash(parentLi){
+            parentLi.remove();
         }
     </script>
 

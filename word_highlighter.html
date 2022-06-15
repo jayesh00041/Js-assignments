@@ -34,67 +34,110 @@
     <input type="checkbox" id="ignore-case" />
 </body>
 <script>
+    // let search = document.getElementById('word-input');
+    // let checkBox = document.getElementById('ignore-case');
+    // checkBox.addEventListener('change',heighlight)
+    // search.addEventListener('input',heighlight);
+    // document.getElementById('paragraph-input').addEventListener('input',heighlight)
+    // function heighlight(){
+    //     let para = document.getElementById('paragraph-input');
+    //     let paraText = para.innerText;
+    //     let search = document.getElementById('word-input');
+    //     let searchText =search.value;
+    //     let text='',search_text='';
+    //     if(document.getElementById('ignore-case').checked){
+    //         text = paraText.toLowerCase();
+    //         search_text = searchText.toLowerCase(); 
+    //     }else{
+    //         text = paraText;
+    //         search_text  = searchText;
+    //     }
+    //     let indexs=[];
+    //     let index=0,i=0;
+    //     let first_time_loop = true;
+
+    //     console.log(search_text+"\n"+text);
+    //     if(search_text!=''){
+    //         while(index!=-1){
+    //             if(first_time_loop){
+    //                 first_time_loop=false;
+    //             }else{
+    //                 index++;
+    //             }
+    //             index = text.indexOf(search_text, index);
+    //             if(index!=-1){
+    //                 indexs[i++] = index;
+    //             }
+        
+    //             console.log(index);
+    //         }
+    //         //  I am Jayesh Hello here Hello come here => her => [18,34]
+    //         //  I am Jayesh Hello <mark>her</mark>e Hello come <mark>her</mark>e
+    //         let str = '';
+    //         let j=0;
+    //         for(let i = 0; i<paraText.length; i++){
+    //             if(i==indexs[j]){
+    //                 str+='<mark>';
+    //             }
+                
+    //             str+=paraText.charAt(i);
+    //             if(i==(indexs[j]+search.value.length-1)){
+    //                 str+='</mark>';
+    //                 j++;
+    //             }
+                
+
+    //         }
+    //         para.innerHTML=str;
+    //     }else{
+    //         para.innerHTML = para.innerText;
+    //     }
+    //     document.getElementById('words-counter').innerHTML = indexs.length;
+    // }
+
+
     let search = document.getElementById('word-input');
     let checkBox = document.getElementById('ignore-case');
-    checkBox.addEventListener('change',heighlight)
-    search.addEventListener('input',heighlight);
-    document.getElementById('paragraph-input').addEventListener('input',heighlight)
-    function heighlight(){
+
+    checkBox.addEventListener('click', highlight);
+    search.addEventListener('input', highlight);
+    document.getElementById('paragraph-input').addEventListener('change', highlight);
+
+
+    function highlight() {
+        //console.log("Higlight function called");
         let para = document.getElementById('paragraph-input');
         let paraText = para.innerText;
         let search = document.getElementById('word-input');
-        let searchText =search.value;
-        let text='',search_text='';
-        if(document.getElementById('ignore-case').checked){
-            text = paraText.toLowerCase();
-            search_text = searchText.toLowerCase(); 
-        }else{
-            text = paraText;
-            search_text  = searchText;
-        }
-        let indexs=[];
-        let index=0,i=0;
-        let first_time_loop = true;
-
-        console.log(search_text+"\n"+text);
-        if(search_text!=''){
-            while(index!=-1){
-                if(first_time_loop){
-                    first_time_loop=false;
-                }else{
-                    index++;
-                }
-                index = text.indexOf(search_text, index);
-                if(index!=-1){
-                    indexs[i++] = index;
-                }
+        let searchText = search.value;
         
-                console.log(index);
-            }
-            //  I am Jayesh Hello here Hello come here => her => [18,34]
-            //  I am Jayesh Hello <mark>her</mark>e Hello come <mark>her</mark>e
-            let str = '';
-            let j=0;
-            for(let i = 0; i<paraText.length; i++){
-                if(i==indexs[j]){
-                    str+='<mark>';
-                }
-                
-                str+=paraText.charAt(i);
-                if(i==(indexs[j]+search.value.length-1)){
-                    str+='</mark>';
-                    j++;
-                }
-                
+        //  if(searchText.length > 0) {
+            let regex = null;
 
-            }
-            para.innerHTML=str;
-        }else{
-            para.innerHTML = para.innerText;
-        }
-        
-        document.getElementById('words-counter').innerHTML = indexs.length;
+            if(checkBox.checked){
+                // console.log("Checkbox is checked");
+                regex = new RegExp(searchText, 'gmi');
 
+            } else if(!checkBox.checked){
+                // console.log("Checkbox is not checked");
+                regex = new RegExp(searchText, 'gm');
+            }
+            console.log(regex);
+            const result = para.textContent.match(regex);
+            console.log(result)
+            document.getElementById('words-counter').innerHTML = result.length;
+            let index = 0;
+            let highlightedTextHtml = paraText;
+            
+            result.forEach(element => {
+                index = paraText.indexOf(element,index);
+                console.log(index++);
+            });
+
+            // let highlightedTextHtml = paraText.replaceAll(regex, `<span class="highlighted-txt">${result[0]}</span>`)
+            para.innerHTML = highlightedTextHtml;
+        // }
+        //console.log(para.innerHTML);
     }
 </script>
 </html>

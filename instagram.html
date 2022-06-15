@@ -37,22 +37,96 @@ Please use images that are <10kb -->
     }
 </style>
 <body>
-    <div id="div1"><img src="image/img1.png" ondragstart="dragEnter(this)" ondragleave="dragEnd(this)" id="drag1"></div>
-    <div id="div2"><img src="image/img2.png" ondragstart="dragEnter(this)" ondragleave="dragEnd(this)" id="drag2"></div>
-    <div id="div3"><img src="image/img3.png" ondragstart="dragEnter(this)" ondragleave="dragEnd(this)" id="drag3"></div>
-    <div id="div3"><img src="image/img4.png" ondragstart="dragEnter(this)" ondragleave="dragEnd(this)" id="drag4"></div>
-    <div id="div4"><img src="image/img5.png" ondragstart="dragEnter(this)" ondragleave="dragEnd(this)" id="drag5"></div>
-    <div id="div5"><img src="image/img6.png" ondragstart="dragEnter(this)" ondragleave="dragEnd(this)" id="drag6"></div>
+    <!-- <div id="div1"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Icon_1_%28set_basic%29.png" ondragstart="dragEnter(this)" ondragover="prevent_default(this)" ondrop="dragEnd(this)" id="drag1"></div>
+    <div id="div2"><img src="data:image/png;base64,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" ondragstart="dragEnter(this)" ondragover="prevent_default(this)" ondrop="dragEnd(this)" id="drag2"></div>
+    <div id="div3"><img src="https://www.freeiconspng.com/thumbs/number-3-icon/number-3-icon-2.jpg" ondragstart="dragEnter(this)" ondragover="prevent_default(this)" ondrop="dragEnd(this)" id="drag3"></div>
+    <div id="div4"><img src="https://www.freeiconspng.com/thumbs/number-4-icon/number-4-icon-1.png" ondragstart="dragEnter(this)" ondragover="prevent_default(this)" ondrop="dragEnd(this)" id="drag4"></div>
+    <div id="div5"><img src="https://www.freeiconspng.com/thumbs/number-5-icon/number-5-icon-24.png" ondragstart="dragEnter(this)" ondragover="prevent_default(this)" ondrop="dragEnd(this)" id="drag5"></div>
+    <div id="div6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/6_icon.svg/1200px-6_icon.svg.png" ondragstart="dragEnter(this)" ondragover="prevent_default(this)" ondrop="dragEnd(this)" id="drag6"></div> -->
+
+    <div id="div1">
+        <img id="drag1" draggable="true"  src="https://source.unsplash.com/random/85x85/?man">
+        </div>
+   <div id="div2"> 
+       <img id="drag2" draggable="true"  src="https://source.unsplash.com/random/85x85/?1"  >
+       </div>
+   <div id="div3">
+         <img id="drag3" draggable="true"  src="https://source.unsplash.com/random/85x85/?cricket">
+        </div>
+   <div id="div4">
+        <img id="drag4" draggable="true"  src="https://source.unsplash.com/random/85x85/?football">
+        </div>
+   <div id="div5" >
+        <img id="drag5" draggable="true"  src="https://source.unsplash.com/random/85x85/?sports">
+        </div>
+   <div id="div6">
+        <img id="drag6" draggable="true"  src="https://source.unsplash.com/random/85x85/?fruit">
+    </div>
 </body>
 <script>
-    var source;
-    function dragEnter(s){
-        source=s;
-    }
-    function dragEnd(d){
-        let temp = d.src;
-        d.src=source.src;
-        source.src=temp;
-    }
+    // var source;
+    // function dragEnter(s){
+    //     source=s;
+    //     console.log(source);
+    // }
+    // function prevent_default(p){
+    //     p.preventDefault()
+    // }
+    // function dragEnd(d){
+    //     let temp = d.src;
+    //     d.src=source.src;
+    //     source.src=temp;
+    //     console.log(temp);
+    // }
+    let firstImageContainer;
+let firstImage;
+let firstImageSrc;
+let firstImageId;
+
+let secondImageContainer;
+let secondImage;
+let secondImageSrc;
+let secondImageId;
+
+
+const imageContainers = document.getElementsByTagName('div');
+for(const imageContainer of imageContainers) {
+    imageContainer.addEventListener('dragstart', dragStart);
+    imageContainer.addEventListener('dragover', dragOver);
+    imageContainer.addEventListener('drop', dragDrop);
+
+}
+
+function dragStart(event) {
+    firstImageContainer = event.currentTarget;
+    firstImage = event.target;
+    firstImageSrc = event.target.src;
+    firstImageId = event.target.id;
+    // console.log(firstImageSrc)
+    // console.log(firstImageId); 
+
+}
+function dragOver(event) {
+    event.preventDefault()
+}
+function dragDrop(event) {
+    secondImageContainer = event.currentTarget;
+    secondImage = event.target;
+    secondImageSrc = event.target.src;
+    secondImageId = event.target.id;
+    
+    // console.log(secondImageSrc)
+    // console.log(secondImageId);
+
+    firstImage.src = secondImageSrc;
+    firstImage.id = secondImageId;
+ 
+    secondImage.src = firstImageSrc;
+    secondImage.id = firstImageId;
+
+    //firstImageContainer.replaceChildren(secondImage);
+   // secondImageContainer.replaceChildren(firstImage)
+ 
+}
 </script>
 </html>

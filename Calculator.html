@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button{
+        font-size: 2em;
+        background-color: gray;
+        color: white;
+        width: 20%;
+        margin: 5px;
+    }
+    .calc{
+        width: 300px;
+        margin: auto;
+        background-color: black;
+        
+    }
+    input{
+        width: 200px;
+        background-color: greenyellow;
+        color: black;
+        font-size: 2em;
+
+    }
+</style>
+<body>
+    <div class="calc">
+        <input id="input" value="0">
+        <button onclick="calculate(this)" id="clr">C</button><br><br>
+        <button onclick="calculate(this)" id="block9">9</button>
+        <button onclick="calculate(this)" id="block8">8</button>
+        <button onclick="calculate(this)" id="block7">7</button>
+        <button onclick="calculate(this)" id="divide">/</button><br><br>
+        <button onclick="calculate(this)" id="block6">6</button>
+        <button onclick="calculate(this)" id="block5">5</button>
+        <button onclick="calculate(this)" id="block4">4</button>
+        <button onclick="calculate(this)" id="multiply">*</button><br><br>
+        <button onclick="calculate(this)" id="block3">3</button>
+        <button onclick="calculate(this)" id="block2">2</button>
+        <button onclick="calculate(this)" id="block1">1</button>
+        <button onclick="calculate(this)" id="minus">-</button><br><br>
+        <button onclick="calculate(this)" id="block0">0</button>
+        <button onclick="calculate(this)" id="dot">.</button>
+        <button onclick="calculate(this)" id="plus">+</button>
+        <button onclick="calculate(this)" id="ans">=</button><br><br>
+    </div>
+    
+</body>
+</html>
+<script>
+    var display = '';
+    var lastValue = 0;
+    function calculate(data){
+        
+        switch(data.id){
+            case 'block0': 
+                display+='0';
+                break;
+            case 'block1': 
+                display+='1';
+                break;
+            case 'block2': 
+                display+='2';
+                break;
+            case 'block3': 
+                display+='3';
+                break;
+            case 'block4': 
+                display+='4';
+                break;
+            case 'block5': 
+                display+='5';
+                break;
+            case 'block6': 
+                display+='6';
+                break;
+            case 'block7': 
+                display+='7';
+                break;
+            case 'block8': 
+                display+='8';
+                break;
+            case 'block9': 
+                display+='9';
+                break;
+            case 'clr' : 
+                display='';
+                break;
+            case 'dot' :
+                display+='.';
+                break;
+            case 'plus':
+                display += '+';
+                break;
+            case 'minus':
+                display += '-';
+                break;
+            case 'multiply':
+                display += '*';
+                break;
+            case 'divide':
+                display += '/';
+                break;
+            case 'ans': 
+                var total = 0;
+                display = eval(display)
+                break;
+        }   
+         document.getElementById('input').value = display;
+    }
+    
+</script>
